@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import csv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -76,6 +77,11 @@ STATICFILES_DIRS = [
 ]
 
 BUS_STATION_CSV = os.path.join(BASE_DIR, 'data-398-2018-08-30.csv')
+
+with open(BUS_STATION_CSV, encoding='cp1251') as file:
+    reader = csv.DictReader(file)
+    data = list(reader)
+STATION_LIST = data
 
 SECRET_KEY = 'put your secret here'
 DEBUG = True
